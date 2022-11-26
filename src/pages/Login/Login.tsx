@@ -1,6 +1,6 @@
 import React from 'react'
 import './Login.css';
-import logo from "../../assets/fire.png"
+import logo from "../../assets/logo.png"
 import {
   Paper,
   TextField,
