@@ -1,0 +1,12 @@
+.paperStyle {
+    position: sticky;
+    width: 400px;
+    height: 500px;
+    padding: 20;
+    margin: 7% auto;
+}
+
+.logoImage {
+    width: 140px;
+    margin-top: 15px;
+}
