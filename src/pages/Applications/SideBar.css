@@ -1,0 +1,14 @@
+.application-section .Mui-selected {
+  background-color: #fff !important;
+  border-left: 4px solid #2199d7 !important;
+  color: #0d1a58 !important;
+}
+
+.application-section .MuiListItemButton-root:not(.Mui-selected) {
+  margin-left: 4px;
+}
+
+.application-section .MuiList-root {
+  padding-top: 0px !important;
+  color: #777777;
+}

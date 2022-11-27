@@ -1,13 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Login } from './pages/Login/Login';
+import React from "react";
+import "./App.css";
+import { Login } from "./pages/Login/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  from,
+} from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import SubmissionQueue from "./pages/Applications/SubmissionQueue";
+import ApplicationContent from "./pages/Applications/ApplicationContent";
+
+const errorLink = onError(({ networkError }) => {
+  if (networkError) {
+    console.log(networkError.message);
+  }
+});
+
+const link = from([
+  errorLink,
+  new HttpLink({ uri: "http://127.0.0.1:8000/graphql" }),
+]);
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: link,
+});
 
 function App() {
   return (
-    <div className="App">
-      <Login/>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/submissionQueue" element={<SubmissionQueue />} />
+          <Route path="/applicationContent" element={<ApplicationContent />} />
+        </Routes>
+      </Router>
+    </ApolloProvider>
   );
 }
 

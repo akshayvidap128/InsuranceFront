@@ -1,0 +1,21 @@
+{
+  "sections": [
+    {
+      "uuid": "f8ec51c2-a188-4a84-a6c8-398708ecd338",
+      "name": "APPLICANT INFORMATION",
+      "order": 101
+    },
+    {
+      "uuid": "1da66899-ffff-46ee-931a-90db056fa856",
+      "name": " INSURANCE HISTORY"
+    },
+    {
+      "uuid": "9db2e00e-8c44-4e05-b2b9-e3e5026a7ef2",
+      "name": "SERVICES PROFILE"
+    },
+    {
+      "uuid": "501 7c553cfd-0757-46a0-a8b7-ba09f74f8e18",
+      "name": "EMPLOYEE BENEFITS LIABILITY"
+    }
+  ]
+}

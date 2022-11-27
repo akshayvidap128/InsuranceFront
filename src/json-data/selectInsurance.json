@@ -1,0 +1,35 @@
+
+{
+  "data": [
+    {
+      "uuid": "737a535e-ab6c-48ac-bcab-244c7cb59c06",
+      "name": "Health Insurance",
+      "image": "health.png"
+    },
+    {
+      "uuid": "1548be52-8be7-42cb-9b04-effe78a0f78e",
+      "name": "Fire Insurance",
+      "image": "fire.png"
+    },
+    {
+      "uuid": "79b05c8f-1a93-45f2-8a2a-227e4ab93cc1",
+      "name": "Motor Insurance",
+      "image": "motor.png"
+    },
+    {
+      "uuid": "6053a9b4-5c49-499b-bc98-9a9419bf7e51",
+      "name": "Travel Insurance",
+      "image": "travel.png"
+    },
+    {
+      "uuid": "77f0d662-1b63-48e2-8c73-68da5065a3f5",
+      "name": "Commerical Insurance",
+      "image": "commercial.png"
+    },
+    {
+      "uuid": "318973f6-112d-4bb9-ad9a-d5cc57dde164",
+      "name": "Marine Insurance",
+      "image": "marine.png"
+    }
+  ]
+}
