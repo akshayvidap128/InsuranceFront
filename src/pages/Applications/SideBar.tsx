@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import "./SideBar.css";
 import data from "../../json-data/sections.json";
+import SessionContext from "../../Context/SessionData/SessionContext";
 
 const SideBar = () => {
-  const handleListItemClick = (name: string, uuid: string) => {
-    // const item = { name: name, uuid: uuid };
-    localStorage.setItem("SectionName", name);
-    localStorage.setItem("Sectionuuid", uuid);
+  const sessionData = useContext(SessionContext);
+
+  // useEffect(() => {
+  //   sessionData.setsetSState
+  // })
+
+  const handleListItemClick = (name: string, uuid: string, order: number) => {
+    const item = { name: name, uuid: uuid };
+    sessionData.setSState(item);
   };
+
   return (
     <Box
       sx={{
@@ -35,7 +42,11 @@ const SideBar = () => {
               //     false
               //   }
               onClick={() =>
-                handleListItemClick(currentSection.name, currentSection.uuid)
+                handleListItemClick(
+                  currentSection.name,
+                  currentSection.uuid,
+                  currentSection.order
+                )
               }
             >
               <ListItemText primary={currentSection.name} />

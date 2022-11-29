@@ -13,6 +13,7 @@ import {
   Grid,
   Radio,
   Tooltip,
+  Typography,
 } from "@mui/material";
 // import { data } from "../../JSON Data/selectInsurance";
 // import data from "../../json-data/selectInsurance";
@@ -90,7 +91,7 @@ export default function SelectInsurance() {
   return (
     <div style={{ margin: "10px", alignItems: "center" }}>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create Submission
+        Request Insurance Quote
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -101,68 +102,67 @@ export default function SelectInsurance() {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Select a Insurance
+          Select An Insurance
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Grid container spacing={4} columnSpacing={3}>
-            {insuranceData.map(
-              ({ uuid, name, image }: ApplicationProps) => {
-                // const  = application;
-                // console.log(`../../assest/${image}`)
-                const isSelected = selectedApplicationUuid
-                  ? uuid === selectedApplicationUuid
-                  : false;
+            {insuranceData.map(({ uuid, name, image }: ApplicationProps) => {
+              // const  = application;
+              // console.log(`../../assest/${image}`)
+              const isSelected = selectedApplicationUuid
+                ? uuid === selectedApplicationUuid
+                : false;
 
-                return (
-                  <Grid item key={uuid}>
-                    <Card
-                      key={uuid}
-                      onClick={() => {
-                        setselectedApplicationUuid(uuid);
-                      }}
-                      variant="outlined"
-                      data-application-entity-name={name}
-                      data-application-name={name}
-                      data-application-uuid={uuid}
-                    >
-                      <Tooltip title={`${name} `}>
+              return (
+                <Grid item key={uuid}>
+                  <Card
+                    key={uuid}
+                    onClick={() => {
+                      setselectedApplicationUuid(uuid);
+                    }}
+                    variant="outlined"
+                    data-application-entity-name={name}
+                    data-application-name={name}
+                    data-application-uuid={uuid}
+                  >
+                    <Tooltip title={`${name} `}>
+                      <Grid
+                        container
+                        justifyContent={"center"}
+                        alignContent={"center"}
+                      >
                         <Grid
-                          container
-                          justifyContent={"center"}
-                          alignContent={"center"}
+                          item
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            padding: "2px",
+                            background: "#F3F3F3",
+                          }}
                         >
-                          <Grid
-                            item
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              padding: "2px",
-                              background: "#F3F3F3",
-                            }}
-                          >
-                            <Box>
-                              <Radio checked={isSelected} size="small" />
-                            </Box>
-                          </Grid>
-                          <Grid item sx={{ padding: 1 }}>
-                            <img
-                              src={image}
-                              alt={name}
-                              style={{
-                                objectFit: "contain",
-                                height: 60,
-                                width: 100,
-                              }}
-                            />
-                          </Grid>
+                          <Box>
+                            <Radio checked={isSelected} size="small" />
+                          </Box>
                         </Grid>
-                      </Tooltip>
-                    </Card>
-                  </Grid>
-                );
-              }
-            )}
+                        <Grid item sx={{ padding: 1 }}>
+                          <img
+                            src={image}
+                            alt={name}
+                            style={{
+                              objectFit: "contain",
+                              height: 60,
+                              width: 100,
+                            }}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Tooltip>
+                    <Typography>{name}</Typography>
+                  </Card>
+                </Grid>
+              );
+            })}
           </Grid>
         </DialogContent>
         <DialogActions>
@@ -171,6 +171,12 @@ export default function SelectInsurance() {
             onClick={() => {
               if (selectedApplicationUuid) {
                 console.log(selectedApplicationUuid);
+                // const item = { name: name, uuid: selectedApplicationUuid };
+                console.log("selectedApplicationUuid", selectedApplicationUuid);
+                localStorage.setItem(
+                  "ApplicationUuid",
+                  selectedApplicationUuid
+                );
                 naviagte("/applicationContent");
                 setOpen(false);
               }

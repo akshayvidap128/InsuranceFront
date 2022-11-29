@@ -1,0 +1,12 @@
+{
+  "data": {
+    "applications": [
+      {
+        "name": "Home Health Care Application",
+        "version": "2011",
+        "status": "Completed",
+        "createAt": "11/04/2022"
+      }
+    ]
+  }
+}

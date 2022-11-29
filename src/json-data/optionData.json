@@ -1,0 +1,62 @@
+{
+  "optionsData": {
+    "a53ab940-6d4d-424a-8c27-2a85203eb80d": [
+      {
+        "name": "$0 to $500,000",
+        "uuid": "4fe109d6-c9ca-4211-ba76-13100ad4153a"
+      },
+      {
+        "name": "$3,000,000 to $4,000,000",
+        "uuid": "ac3a5dc8-deb5-4e06-9481-5a42ce5e9174"
+      },
+      {
+        "name": "$7,000,000 to $8,000,000",
+        "uuid": "0f813575-7f7c-4f15-bc5a-4274dded80da"
+      },
+      {
+        "name": "$500,000 to $1,000,000",
+        "uuid": "a1b4e5e0-9878-4147-a74f-cc3772372664"
+      },
+      {
+        "name": "$4,000,000 to $5,000,000",
+        "uuid": "321c741b-2259-46c3-8d4b-99aaaf5c2139"
+      },
+      {
+        "name": "$8,000,000 to $9,000,000",
+        "uuid": "9ffe71b5-b22a-4da0-9101-8bbfd392c126"
+      },
+      {
+        "name": "$2,000,000 to $3,000,000",
+        "uuid": "a1b4e5e0-9878-4147-a74f-cc3772372664"
+      }
+    ],
+    "17679773-734a-4b0d-a908-625200cc3073": [
+      {
+        "name": "Never",
+        "uuid": "4fe109d6-c9ca-4211-ba76-13100ad4153a"
+      },
+      {
+        "name": "Every 60 days",
+        "uuid": "ac3a5dc8-deb5-4e06-9481-5a42ce5e9174"
+      },
+      {
+        "name": "> 60 days",
+        "uuid": "0f813575-7f7c-4f15-bc5a-4274dded80da"
+      }
+    ],
+    "afff0883-ed9f-4ab9-9aa6-e63f66e32908": [
+      {
+        "name": "On Hire Only",
+        "uuid": "4fe109d6-c9ca-4211-ba76-13100ad4153a"
+      },
+      {
+        "name": "Semi Annually",
+        "uuid": "ac3a5dc8-deb5-4e06-9481-5a42ce5e9174"
+      },
+      {
+        "name": "Annually",
+        "uuid": "0f813575-7f7c-4f15-bc5a-4274dded80da"
+      }
+    ]
+  }
+}

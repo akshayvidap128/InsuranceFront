@@ -7,15 +7,18 @@
     },
     {
       "uuid": "1da66899-ffff-46ee-931a-90db056fa856",
-      "name": " INSURANCE HISTORY"
+      "name": " INSURANCE HISTORY",
+      "order": 201
     },
     {
       "uuid": "9db2e00e-8c44-4e05-b2b9-e3e5026a7ef2",
-      "name": "SERVICES PROFILE"
+      "name": "SERVICES PROFILE",
+      "order": 301
     },
     {
-      "uuid": "501 7c553cfd-0757-46a0-a8b7-ba09f74f8e18",
-      "name": "EMPLOYEE BENEFITS LIABILITY"
+      "uuid": "7c553cfd-0757-46a0-a8b7-ba09f74f8e18",
+      "name": "EMPLOYEE BENEFITS LIABILITY",
+      "order": 401
     }
   ]
 }
