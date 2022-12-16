@@ -13,6 +13,7 @@ import { onError } from "@apollo/client/link/error";
 import SubmissionQueue from "./pages/Applications/SubmissionQueue";
 import ApplicationContent from "./pages/Applications/ApplicationContent";
 import ViewApplication from "./pages/Applications/ViewApplication";
+import AddQuestion from "./pages/Applications/AddQuestion";
 
 const errorLink = onError(({ networkError }) => {
   if (networkError) {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/submissionQueue" element={<SubmissionQueue />} />
           <Route path="/applicationContent" element={<ApplicationContent />} />
           <Route path="/viewApplicant" element={<ViewApplication />} />
+          <Route path="/addQuestion" element={<AddQuestion />} />
         </Routes>
       </Router>
     </ApolloProvider>

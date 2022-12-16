@@ -16,6 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,6 +63,8 @@ export default function PrimarySearchAppBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
+  const navigate = useNavigate();
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -100,7 +103,13 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>LogOut</MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        LogOut
+      </MenuItem>
     </Menu>
   );
 
@@ -256,4 +265,7 @@ export default function PrimarySearchAppBar() {
       {renderMenu}
     </Box>
   );
+}
+function nagivate(arg0: string) {
+  throw new Error("Function not implemented.");
 }

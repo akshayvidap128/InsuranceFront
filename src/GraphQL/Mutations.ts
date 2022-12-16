@@ -18,6 +18,25 @@ export const saveApplicantMutation = gql(`
   }
 `);
 
+export const saveQuestionMutation = gql(`
+  mutation createQuestion($applicationUuid:String!, $questionString: String!, $sectionUuid: String!, $type: String!, $role: String!) {
+    createQuestion(applicationUuid: $applicationUuid,questionString: $questionString, sectionUuid: $sectionUuid, type: $type, role:$role)
+    {
+      uuid
+    }
+  }
+`);
+
+export const saveSectionMutation = gql(`
+  mutation  createSection($applicationUuid: String!, $sectionName: String!){
+     createSection(applicationUuid: $applicationUuid, sectionName: $sectionName )
+     {
+      uuid
+      name
+     }
+  }
+`);
+
 export const saveAnswersMutationOld = gql(`
   mutation saveAnswers($data:String!)
   {
@@ -25,27 +44,3 @@ export const saveAnswersMutationOld = gql(`
    
   }
 `);
-//  mutation saveAnswers(applicationUuid:$applicationUuid,$answers:[$answer: String!, $questionUuid: String!]) {
-//     saveAnswers(data:{applicationUuid: $applicationUuid, answers: $answer }){
-//       uuid
-//     }
-
-// const POST_APPLICATION_ANSWERS = graphql(`
-//   mutation postAnswers($answers: JSON!) {
-//     answers(answers: $answers) {
-//       uuid
-//       sectionUuid
-//       subSectionUuid
-//       order
-//       type
-//       graphqlQuery
-//       answer {
-//         uuid
-//         answer
-//         type
-//         createdAt
-//         updatedAt
-//       }
-//     }
-//   }
-// `);

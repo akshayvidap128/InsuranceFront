@@ -4,11 +4,16 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import "./SideBar.css";
-import data from "../../json-data/sections.json";
+// import data from "../../json-data/sections.json";
 import SessionContext from "../../Context/SessionData/SessionContext";
+import { useQuery } from "@apollo/client";
+import { Sections } from "../../GraphQL/Queries";
 
 const SideBar = () => {
   const sessionData = useContext(SessionContext);
+
+  const { data } = useQuery(Sections);
+  // console.log("SectionsGraph:-", data);
 
   // useEffect(() => {
   //   sessionData.setsetSState
@@ -31,7 +36,7 @@ const SideBar = () => {
       className="application-section"
     >
       <List component="nav" aria-label="application menus">
-        {data.sections.map((currentSection) => {
+        {data?.getSections.map((currentSection: any) => {
           return (
             <ListItemButton
               key={currentSection.uuid}

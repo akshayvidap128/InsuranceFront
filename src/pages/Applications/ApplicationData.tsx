@@ -5,7 +5,12 @@ import React, {
   useContext,
 } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Questions, Applicants } from "../../GraphQL/Queries";
+import {
+  Applicants,
+  UserQuestions,
+  ManagerQuestions,
+  AppeaserQuestions,
+} from "../../GraphQL/Queries";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -35,6 +40,7 @@ import { v4 as uuidv4 } from "uuid";
 import optionData from "../../json-data/optionData.json";
 import ApplicationContent from "./ApplicationContent";
 import { useNavigate } from "react-router-dom";
+import AddQuestionDialog from "../Applications/AddQuestionDialog";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -52,11 +58,19 @@ const questionWithAnswers = new Array<ApplicationMutationQuestion>();
 
 interface QuestionProps {
   uuid: string | any;
+
   type: string | any;
+
   questionString: string | any;
+
   sectionUuid: string | any;
+
   order: number | any;
+
+  role: string | any;
+
   // eslint-disable-next-line no-restricted-globals
+
   setformDataHandler: (
     event:
       | React.FormEvent<HTMLFormElement>
@@ -71,7 +85,6 @@ interface QuestionProps {
     ty: string
   ) => void;
 }
-
 interface AnswerProps {
   answer: string | any;
   questionUuid: string | any;
@@ -86,9 +99,10 @@ const QuestionType = ({
   questionString,
   sectionUuid,
   order,
+  role,
   setformDataHandler,
-}: QuestionProps) => {
-  const [value, setValue] = React.useState<Dayjs | null>(null);
+}: QuestionProps | any) => {
+  const [value, setValue] = React.useState<Dayjs | null>();
 
   const handleInputChange = (
     event:
@@ -103,9 +117,11 @@ const QuestionType = ({
   ) => {
     // const { name, value } = (event.target as HTMLInputElement).value;
     // console.log("NAme:", name);
+    // console.log("Select:-", event.target.value);
     const value = (event.target as HTMLInputElement).value;
     setformDataHandler(event, value, uuid, type);
   };
+
   switch (type) {
     case "string":
       return (
@@ -145,10 +161,12 @@ const QuestionType = ({
           </InputLabel>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              // label={questionString}
               value={value}
-              onChange={(event) => {
-                handleInputChange(event, uuid);
+              onChange={(newValue) => {
+                setValue(newValue);
+                const message = value?.toString;
+                // setformDataHandler(message, uuid, type);
+                console.log("Data:-", value);
               }}
               renderInput={(params) => <TextField {...params} />}
             />
@@ -176,30 +194,87 @@ const QuestionType = ({
           <InputLabel sx={{ color: "#4F4F4F" }}> {questionString}</InputLabel>
         </>
       );
-    case "list":
-      return (
-        <>
-          <InputLabel sx={{ color: "#4F4F4F" }}>{questionString}</InputLabel>
-          <Select
-            labelId="demo-select-small"
-            id="demo-select-small"
-            variant="outlined"
-            onChange={(event) => {
-              handleInputChange(event, uuid);
-            }}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>$0 to $500,000</MenuItem>
-            <MenuItem value={20}>$3,000,000 to $4,000,000</MenuItem>
-            <MenuItem value={30}>$7,000,000 to $8,000,000</MenuItem>
-          </Select>
-        </>
-      );
+    case "list": {
+      if (uuid === "a53ab940-6d4d-424a-8c27-2a85203eb80d") {
+        return (
+          <>
+            <InputLabel sx={{ color: "#4F4F4F" }}>{questionString}</InputLabel>
+            <Select
+              labelId="demo-select-small"
+              id="demo-select-small"
+              variant="outlined"
+              onChange={(event) => {
+                handleInputChange(event, uuid);
+              }}
+              fullWidth
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"$0 to $500,000"}>$0 to $500,000</MenuItem>
+              <MenuItem value={"$3,000,000 to $4,000,000"}>
+                $3,000,000 to $4,000,000
+              </MenuItem>
+              <MenuItem value={"$7,000,000 to $8,000,000"}>
+                $7,000,000 to $8,000,000
+              </MenuItem>
+              <MenuItem value={"$7,000,000 to $8,000,000"}>
+                $500,000 to $1,000,000
+              </MenuItem>
+            </Select>
+          </>
+        );
+      }
+      if (uuid === "17679773-734a-4b0d-a908-625200cc3073") {
+        return (
+          <>
+            <InputLabel sx={{ color: "#4F4F4F" }}>{questionString}</InputLabel>
+            <Select
+              labelId="demo-select-small"
+              id="demo-select-small"
+              variant="outlined"
+              onChange={(event) => {
+                handleInputChange(event, uuid);
+              }}
+              fullWidth
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"Never"}>Never</MenuItem>
+              <MenuItem value={"Every 60 days"}>Every 60 days</MenuItem>
+              <MenuItem value={">60 days"}>{`>60 days`}</MenuItem>
+            </Select>
+          </>
+        );
+      }
+      if (uuid === "afff0883-ed9f-4ab9-9aa6-e63f66e32908") {
+        return (
+          <>
+            <InputLabel sx={{ color: "#4F4F4F" }}>{questionString}</InputLabel>
+            <Select
+              labelId="demo-select-small"
+              id="demo-select-small"
+              variant="outlined"
+              onChange={(event) => {
+                handleInputChange(event, uuid);
+              }}
+              fullWidth
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"On Hire Only"}>On Hire Only</MenuItem>
+              <MenuItem value={"Semi Annually"}>Semi Annually</MenuItem>
+              <MenuItem value={"Annually"}>Annually</MenuItem>
+            </Select>
+          </>
+        );
+      }
+      break;
+    }
     default:
-      return null;
+      return <></>;
   }
 };
 
@@ -211,25 +286,55 @@ const ApplicationData = () => {
   const [saveForm] = useMutation(saveApplicantMutation);
   const [key, setKey] = React.useState<string | null>(null);
 
-  // console.log("sessionData:", sessionData);
-  // console.log("Sessionuuid:-", typeOf(sessionData.sstate.uuid));
-  // const { sessionName, sessionUuid } = sessionData.sstate;
-  // const sectionuuid: string = sessionName;
-  // sessionData.sstate.uuid;
   {
     const { data } = useQuery(Applicants);
     console.log("Application:-", data?.applicantForms);
   }
-  const { data } = useQuery(Questions);
-  console.log("Question:-", data?.getQuestions);
 
-  const section = data?.getQuestions.filter(
-    ({ sectionUuid }: QuestionProps) => {
-      // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338"
-      return sectionUuid === sessionData?.sstate.uuid;
-    }
-  );
+  let rolevalue = localStorage.getItem("Role");
 
+  console.log("SessionData:-", sessionData);
+
+  console.log("rolevalue:-", rolevalue);
+
+  let section;
+
+  if (rolevalue?.includes("agent")) {
+    console.log("In user");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { data } = useQuery(UserQuestions);
+    console.log("Question:-", data);
+    section = data?.getUserQuestions.filter(
+      ({ sectionUuid }: QuestionProps) => {
+        // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338";
+        return sectionUuid === sessionData?.sstate.uuid;
+      }
+    );
+  } else if (rolevalue?.includes("underwriter")) {
+    console.log("In Appeaser");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { data } = useQuery(AppeaserQuestions);
+    console.log("Question:-", data);
+    section = data?.getAppeaserQuestions.filter(
+      ({ sectionUuid }: QuestionProps) => {
+        // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338"
+        return sectionUuid === sessionData?.sstate.uuid;
+      }
+    );
+  } else if (rolevalue?.includes("admin")) {
+    console.log("In Admin");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { data } = useQuery(ManagerQuestions);
+    console.log("Question:-", data);
+    section = data?.getManagerQuestions.filter(
+      ({ sectionUuid }: QuestionProps) => {
+        // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338"
+        return sectionUuid === sessionData?.sstate.uuid;
+      }
+    );
+    console.log("Sectionadmin:-", sessionData?.sstate.uuid);
+    console.log("IN......admin:-", section);
+  }
   // console.log("DataSections:-", section);
 
   section.sort((a: QuestionProps, b: QuestionProps) => {
@@ -325,6 +430,7 @@ const ApplicationData = () => {
                 questionString,
                 sectionUuid,
                 order,
+                role,
               }: QuestionProps) => {
                 return (
                   <Grid item xs={6}>
@@ -335,6 +441,7 @@ const ApplicationData = () => {
                         questionString={questionString}
                         sectionUuid={sectionUuid}
                         order={order}
+                        role={role}
                         setformDataHandler={setformDataHandler}
                       />
                     </Item>
@@ -366,9 +473,27 @@ const ApplicationData = () => {
           >
             Save
           </Button>
-          <Button variant="contained" sx={{ margin: "5px" }}>
+          <Button
+            variant="contained"
+            sx={{ margin: "5px" }}
+            onClick={() => {
+              navigate("/submissionQueue");
+            }}
+          >
             Cancel
           </Button>
+          {rolevalue?.includes("admin") ? (
+            // <Button
+            //   variant="outlined"
+            //   sx={{ margin: "5px" }}
+            //   // onClick={() => display()}
+            // >
+
+            // </Button>
+            <AddQuestionDialog />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

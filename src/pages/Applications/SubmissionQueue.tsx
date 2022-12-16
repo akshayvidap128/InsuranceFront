@@ -12,9 +12,14 @@ import SelectInsurance from "../Applications/SelectInsurance";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Applicants } from "../../GraphQL/Queries";
+import AddSection from "./AddSection";
 
 import { useQuery, gql } from "@apollo/client";
-import { Questions } from "../../GraphQL/Queries";
+import {
+  UserQuestions,
+  ManagerQuestions,
+  AppeaserQuestions,
+} from "../../GraphQL/Queries";
 import applicationData from "../../json-data/application.json";
 import ViewApplication from "./ViewApplication";
 
@@ -46,6 +51,7 @@ const SubmissionQueue = () => {
 
   const { data } = useQuery(Applicants);
   console.log("Applicants:-", data?.applicantForms);
+  const role = localStorage.getItem("Role");
   // const { data } = useQuery(Applicants, {
   //   variables: { applicationUuid: "737a535e-ab6c-48ac-bcab-244c7cb59c06" },
   // });
@@ -57,13 +63,34 @@ const SubmissionQueue = () => {
     localStorage.setItem("Sectionuuid", uuid);
   });
   {
-    const { data } = useQuery(Questions);
-    console.log("SubmissionQ:--", data?.getQuestions);
+    const { data } = useQuery(UserQuestions);
+    console.log("SubmissionU:--", data?.getUserQuestions);
   }
+  {
+    const { data } = useQuery(ManagerQuestions);
+    console.log("SubmissionM:--", data?.getManagerQuestions);
+  }
+  {
+    const { data } = useQuery(AppeaserQuestions);
+    console.log("SubmissionA:--", data?.getAppeaserQuestions);
+  }
+  // window.location.reload();
   return (
     <div>
       <PrimarySearchAppBar />
       <SelectInsurance />
+      {role?.includes("admin") ? (
+        <>
+          <Button
+            variant="outlined"
+            sx={{ marginLeft: "10px" }}
+            onClick={() => navigate("/addQuestion")}
+          >
+            Add Question
+          </Button>
+          <AddSection />
+        </>
+      ) : null}
       <h2>Submission Queue</h2>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
