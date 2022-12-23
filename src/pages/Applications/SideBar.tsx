@@ -21,6 +21,7 @@ const SideBar = () => {
 
   const handleListItemClick = (name: string, uuid: string, order: number) => {
     const item = { name: name, uuid: uuid };
+    // @ts-ignore
     sessionData.setSState(item);
   };
 

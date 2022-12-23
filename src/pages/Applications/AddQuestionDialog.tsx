@@ -221,6 +221,7 @@ export default function AddQuestionDialog() {
                 variables: {
                   applicationUuid: "737a535e-ab6c-48ac-bcab-244c7cb59c06",
                   questionString: question,
+                  // @ts-ignore
                   sectionUuid: sessionData?.sstate.uuid,
                   type: datatype,
                   role: roles,

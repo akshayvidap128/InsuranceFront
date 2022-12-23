@@ -307,6 +307,7 @@ const ApplicationData = () => {
     section = data?.getUserQuestions.filter(
       ({ sectionUuid }: QuestionProps) => {
         // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338";
+        // @ts-ignore
         return sectionUuid === sessionData?.sstate.uuid;
       }
     );
@@ -318,6 +319,7 @@ const ApplicationData = () => {
     section = data?.getAppeaserQuestions.filter(
       ({ sectionUuid }: QuestionProps) => {
         // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338"
+        // @ts-ignore
         return sectionUuid === sessionData?.sstate.uuid;
       }
     );
@@ -329,9 +331,11 @@ const ApplicationData = () => {
     section = data?.getManagerQuestions.filter(
       ({ sectionUuid }: QuestionProps) => {
         // return sectionUuid === "f8ec51c2-a188-4a84-a6c8-398708ecd338"
+        // @ts-ignore
         return sectionUuid === sessionData?.sstate.uuid;
       }
     );
+    // @ts-ignore
     console.log("Sectionadmin:-", sessionData?.sstate.uuid);
     console.log("IN......admin:-", section);
   }
@@ -385,6 +389,7 @@ const ApplicationData = () => {
   const nextDisplay = () => {
     let i: number = 0;
     sidebarData.sections.forEach((data, index) => {
+      // @ts-ignore
       if (data.uuid === sessionData?.sstate.uuid) {
         i = index;
       }
@@ -395,12 +400,14 @@ const ApplicationData = () => {
         name: sidebarData.sections[i + 1].name,
         uuid: sidebarData.sections[i + 1].uuid,
       };
+      // @ts-ignore
       sessionData.setSState(item);
     }
   };
   const perviousDisplay = () => {
     let i: number = 0;
     sidebarData.sections.forEach((data, index) => {
+      // @ts-ignore
       if (data.uuid === sessionData?.sstate.uuid) {
         i = index;
       }
@@ -411,6 +418,7 @@ const ApplicationData = () => {
         name: sidebarData.sections[i - 1].name,
         uuid: sidebarData.sections[i - 1].uuid,
       };
+      // @ts-ignore
       sessionData.setSState(item);
     }
   };
@@ -420,6 +428,7 @@ const ApplicationData = () => {
       <div>
         <Box sx={{ flexGrow: 1, margin: "15px" }}>
           <Typography variant="h4" gutterBottom>
+            {/*  @ts-ignore */}
             {sessionData?.sstate.name}
           </Typography>
           <Grid container spacing={2}>
@@ -435,6 +444,7 @@ const ApplicationData = () => {
                 return (
                   <Grid item xs={6}>
                     <Item>
+                      {/*  @ts-ignore */}
                       <QuestionType
                         uuid={uuid}
                         type={type}
