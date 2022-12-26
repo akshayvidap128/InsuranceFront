@@ -52,8 +52,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
     "@types/uuid": "^8.3.4"
   },
   "proxy": "http://20.244.116.244/",
