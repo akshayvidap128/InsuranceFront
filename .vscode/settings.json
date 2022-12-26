@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/6db5857a-cd80-49be-8df5-d3c1f029c478/AppServices/subscriptions/6db5857a-cd80-49be-8df5-d3c1f029c478/resourceGroups/rg-Insurance-frontend-01/providers/Microsoft.Web/sites/wa-Insurance-frontend-01",
+  "appService.deploySubpath": "."
+}
