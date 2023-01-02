@@ -14,7 +14,6 @@ import SubmissionQueue from "./pages/Applications/SubmissionQueue";
 import ApplicationContent from "./pages/Applications/ApplicationContent";
 import ViewApplication from "./pages/Applications/ViewApplication";
 import AddQuestion from "./pages/Applications/AddQuestion";
-// import cors from "cors";
 
 const errorLink = onError(({ networkError }) => {
   if (networkError) {
@@ -24,21 +23,14 @@ const errorLink = onError(({ networkError }) => {
 
 const link = from([
   errorLink,
-  // new HttpLink({
-  //   uri: "http://127.0.0.1:8000/graphql",
-  //   credentials: "same-origin",
-  //   // fetchOptions: {
-  //   //   mode: "no-cors",
-  //   // },
-  // }),
+  // new HttpLink({ uri: "http://127.0.0.1:8000/graphql" }),
   new HttpLink({
-    uri: "/graphql",
-    credentials: "include",
+    uri: " /graphql",
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "content-type": "application/json",
+      "allow-access-control": "*",
     },
   }),
+  // http://20.244.116.244
 ]);
 
 const client = new ApolloClient({
